@@ -6,28 +6,28 @@
     <script>
       //Énoncé :
       /*
-        Dans cet exercice, vous ne devez utiliser que des fonctions constructeur.
-      */
+              Dans cet exercice, vous ne devez utiliser que des fonctions constructeur.
+            */
 
       /*
-        1. Écrivez une fonction constructeur qui permet de construire des objets représentant des mammouths. Les mammouths avaient plusieurs caractéristiques :
-        - Leur âge qui est un nombre;
-        - Leur poids qui est un nombre;
-        - Leur espèce qui est une chaîne de caractères;
-        - Le fait qu'ils aient une fourrure, qui est un booléen;
-        - Leur genre (mâle ou femelle) qui est une chaîne de caractères;
-        - L'action de barrir qui est une méthode.
-      */
+              1. Écrivez une fonction constructeur qui permet de construire des objets représentant des mammouths. Les mammouths avaient plusieurs caractéristiques :
+              - Leur âge qui est un nombre;
+              - Leur poids qui est un nombre;
+              - Leur espèce qui est une chaîne de caractères;
+              - Le fait qu'ils aient une fourrure, qui est un booléen;
+              - Leur genre (mâle ou femelle) qui est une chaîne de caractères;
+              - L'action de barrir qui est une méthode.
+            */
 
       // declaration de la fonction construrteur (mammouths)
-      var mammouths = function (poids, espece, uneFourrure, genre) {
+      var Mammouths = function (poids, uneFourrure, genre) {
         this.poids = poids;
-        this.espèce = espèce;
+        this.espece = "mamou";
         this.uneFourrure = uneFourrure;
         this.genre = genre;
       };
       // declaration de l'objet (mammouths) qui sera le prototype des autres objets
-      mammouths.prototype = {
+      Mammouths.prototype = {
         age: 80,
         aBarri: function () {
           alert("hiiiii");
@@ -35,41 +35,52 @@
       };
 
       /*
-        2. Les éléphants contemporains héritent probablement des caractéristiques d'un mammouth qui est leur prototype. Écrivez une fonction constructeur qui permet de construire des objets représentant des éléphants. Les éléphants ont deux caractéristiques qui différent des mammouths :
-        - Leur poids qui est un nombre;
-        - Leur espèce qui est une chaîne de caractère;
-        - Le fait qu'ils n'aient pas de fourrure, qui est un booléen;
-        - L'action de manger des cacahuètes qui est une méthode.
-      */
+              2. Les éléphants contemporains héritent probablement des caractéristiques d'un mammouth qui est leur prototype. Écrivez une fonction constructeur qui permet de construire des objets représentant des éléphants. Les éléphants ont deux caractéristiques qui différent des mammouths :
+              - Leur poids qui est un nombre;
+              - Leur espèce qui est une chaîne de caractère;
+              - Le fait qu'ils n'aient pas de fourrure, qui est un booléen;
+              - L'action de manger des cacahuètes qui est une méthode.
+            */
 
       // declaration de la fonction construrteur (elephants)
-      var elephants = function (espece, genre) {
+      var elephants = function (genre) {
+        Mammouths.call(this, genre);
         this.poids = 6000;
-        this.espece = espece;
+        this.espece = "eleph";
         this.uneFourrure = false;
         this.genre = genre;
       };
 
       // declaration de l'objet (elephants) qui sera le prototype des autres objets
-      elephants.prototype = {
-        age: mammouths.prototype.age,
-        aBarri: mammouths.prototype.aBarri,
-        eatNuts: function () {
-          alert("j'adore les cacahuètes!!");
+      elephants.prototype = Object.create(Mammouths.prototype, {
+        costructor: {
+          value: elephants,
+          enumerable: false,
+          writable: true,
+          configurable: true,
         },
+      });
+      elephants.prototype.eatNuts = function () {
+        alert("miam miam!!!");
       };
 
       /*
-        3. Créez 2 éléphants. Vous devez pouvoir exécuter la méthode qui leur permet de barrir et qui provient de leur prototype et, exécuter la méthode qui leur permet de manger des cacahuètes et qui leur est propre.
-      */
-      var elephants1 = new elephants("elepha", "femelle");
+              3. Créez 2 éléphants. Vous devez pouvoir exécuter la méthode qui leur permet de barrir et qui provient de leur prototype et, exécuter la méthode qui leur permet de manger des cacahuètes et qui leur est propre.
+            */
+      var elephants1 = new elephants("femelle");
+      elephants1.espece = "elepha";
 
       // test affichage (héritage)
       alert(elephants1.age);
       elephants1.aBarri();
       elephants1.eatNuts();
 
-      var elephants2 = new elephants("loxodonta", "mâle");
+      var elephants2 = new elephants("mâle");
+      elephants2.espece = "loxodo";
+
+      /*
+              3. Créez 2 éléphants. Vous devez pouvoir exécuter la méthode qui leur permet de barrir et qui provient de leur prototype et, exécuter la méthode qui leur permet de manger des cacahuètes et qui leur est propre.
+            */
     </script>
   </head>
   <body>
