@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>objet event</title>
+    <style>
+      div {
+        border: solid 3px black;
+        display: inline-block;
+        margin: 2px;
+        height: 20px;
+        width: 40px;
+      }
+    </style>
+  </head>
+  <body></body>
+  <script>
+    for (var i = 0; i < 200; i++) {
+      var divElmt = document.createElement("div");
+      document.body.appendChild(divElmt);
+    }
+    var divs = document.getElementsByTagName("div");
+
+    var randCol = function () {
+      return Math.floor(Math.random() * 256);
+    };
+
+    var changeCol = function () {
+      var r = randCol(),
+        g = randCol(),
+        b = randCol();
+      document.body.style.backgroundColor =
+        "rgb(" + r + "," + g + "," + b + ")";
+    };
+
+    for (var i = 0; i < divs.length; i++) {
+      var div = divs[i];
+      div.addEventListener("click", function (e) {
+        var r = randCol(),
+          g = randCol(),
+          b = randCol();
+        e.target.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+      });
+    }
+  </script>
+</html>
