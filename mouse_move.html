@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>position du curseur(X,Y)</title>
+    <style>
+      div {
+        margin: 50px;
+        border: solid 2px black;
+        width: 500px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="position">
+      <p></p>
+    </div>
+    <script>
+      var pCurseur = document.getElementById("position");
+      pCurseur.addEventListener("mousemove", function (e) {
+        pCurseur.innerHTML =
+          "Position X :" +
+          " " +
+          e.clientX +
+          "px" +
+          "<br/> Position Y :" +
+          " " +
+          e.clientY +
+          "px";
+      });
+    </script>
+  </body>
+</html>
