@@ -78,20 +78,6 @@
           element1.style.left = coteG + mouvX + "px";
           element1.style.top = coteT + mouvY + "px";
         }, 200);
-
-        var testCollision = function () {
-          if (
-            gauch <= coteD ||
-            coteG <= droit ||
-            haut <= coteB ||
-            coteT <= bas
-          ) {
-            depX = -depX;
-            depY = -depY;
-            mouvX = -mouvX;
-            mouvY = -mouvY;
-          }
-        };
       })();
 
       (function () {
