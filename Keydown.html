@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>évènement keydown</title>
+    <style>
+      #joueur {
+        border: solid 2px black;
+        background-color: chartreuse;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        var larEcran = window.innerWidth;
+        var hauEcran = window.innerHeight;
+
+        var divs = document.querySelectorAll("div");
+        joueur = divs[0];
+        joueur.style = "position : absolute ; top: 0px; left: 0px;";
+        joueur.style.backgroundColor = "magenta";
+        var deplacementX = 5;
+        var deplacementY = 5;
+
+        window.onkeydown = function (event) {
+          var code = event.keyCode;
+
+          switch (code) {
+            case 37:
+              var joueurL = parseInt(joueur.style.left);
+              joueur.style.left = joueurL - deplacementX + "px";
+              // alert("gauche");
+
+              break;
+            case 38:
+              var joueurT = parseInt(joueur.style.top);
+              joueur.style.top = joueurT - deplacementY + "px";
+              // alert("haut");
+
+              break;
+            case 39:
+              var joueurL = parseInt(joueur.style.left);
+              joueur.style.left = joueurL + deplacementX + "px";
+              // alert("droite");
+
+              break;
+            case 40:
+              var joueurT = parseInt(joueur.style.top);
+              joueur.style.top = joueurT + deplacementX + "px";
+            // alert("bas");
+          }
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div id="joueur"></div>
+  </body>
+</html>
